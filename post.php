@@ -7,6 +7,7 @@
     <?php  include "includes/navigation.php"; ?>
 // nothing    
  //nothing ++ new changes
+//nothing +++
     <!-- Page Content -->
     <div class="container">
 

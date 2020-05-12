@@ -38,16 +38,18 @@
                        <?php
                         //include update_category path using little condition
                         //update and include query
-                          if(isset($_GET['edit'])){
+                        
+                          
+                        if(isset($_GET['edit'] )){
 
                           $cat_id = $_GET['edit'];
                           include "includes/update_categories.php";
                           }
+                          
 
 
                         ?>
-
-                       
+                      
                     </div><!--end of category form div-->
                     
                     <!-- create category table-->

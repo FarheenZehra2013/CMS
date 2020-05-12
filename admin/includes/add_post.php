@@ -15,17 +15,17 @@ if(isset($_POST['create_post'])){
   $posts_tag       =$_POST['posts_tag'];
   $post_content    =$_POST['post_content'];
   $post_date       =date('d-m-y');
-  $post_comment_count=4;//hard code
+  //$post_comment_count=4;//hard code
 
  //$post search form  from their name/variables
  move_uploaded_file($post_image_temp,"../images/$post_image");
 
  //insert query
 $query= "INSERT INTO posts (post_category_id, post_title, post_author,post_date,post_image,post_content ,
- posts_tag,post_comment_count,post_status)";
+ posts_tag,post_status)";
 
  $query.=" VALUES ({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}',
- '{$post_content}','{$posts_tag}','{$post_comment_count}','{$post_status}')";
+ '{$post_content}','{$posts_tag}','{$post_status}')";
 
  echo "query is:".$query; 
  //now() is date function

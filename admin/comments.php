@@ -26,9 +26,9 @@ echo "befor if--";
 
                         }   else{
 
-                            echo "within else";
+                          //  echo "within else";
 
-                           // $source =  '';
+                            $source =  '';
 
                           //  var_dump ($_GET);
                         }

@@ -1,5 +1,7 @@
 <!--add ob function-->
 
+
+
 <!--it is a function that hold all info of php before send it to browser-->
 <!--this function didnt slow your programming and your web page open quickly-->
 
@@ -11,7 +13,27 @@
 <!--function file-->
 <?php include "admin_functions.php"; ?>
 
-<?php  ob_start();?>
+<?php  ob_start(); ?>
+
+<?php session_start(); ?>
+<?php
+//checking for users
+
+if(!isset($_SESSION['user_role'])){
+
+    header("Location:../index.php");  
+}
+ 
+?>
+
+
+
+
+
+
+
+
+
 
 
 <!DOCTYPE html>

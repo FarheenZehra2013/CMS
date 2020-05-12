@@ -1,4 +1,10 @@
 
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -15,18 +21,39 @@
              <!--add back link two dots means back link to index.php -->
              <li><a href="../index.php">HOME SITE</a></li>
                 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+             <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                    
+<?php
+
+if(isset($_SESSION['username'])) {
+
+    
+    echo $_SESSION['username'];
+
+
+}
+
+
+
+
+?>
+                                    
+                    
+                    
+                    <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                           
+                           
+                           
+                            <a href=""><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="../includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
-                    </ul>
-                </li>
+
             </ul>
 
 
@@ -41,7 +68,7 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts_dropdown" class="collapse">
                             <li>
-                                <a href="/cms/admin/posts.php">Posts</a>
+                                <a href="/cms/admin/posts.php">View All Posts</a>
                             </li>
                             <li>
                                 <a href="posts.php?source=add_post">Add Posts</a>
@@ -49,24 +76,24 @@
                         </ul>
                     </li>
                     <li>
-                     <a href="./categories.php"><i class="fa fa-fw fa-dashboard"></i>Catogories</a>
+                     <a href="./categories.php"><i class="fa fa-fw fa-dashboard"></i>Categories</a>
                     </li> 
-                    <li class="active">
+                    <li class="">
                         <a href="/cms/admin/comments.php"><i class="fa fa-fw fa-file"></i> Comments</a>
                     </li>
                     <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">hi</a>
+                                <a href="users.php">View All Users</a>
                             </li>
                             <li>
-                                <a href="#">hi2</a>
+                                <a href="users.php?source=add_user">Add User</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
+                        <a href="profile.php"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
                     </li>
                 </ul>
             </div>

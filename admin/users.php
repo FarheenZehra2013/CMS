@@ -1,111 +1,59 @@
-<?php include "includes/admin_header.php" ?>
-        
-        <?php 
+<?php include "includes/admin_header.php"; ?>
 
-            if(!is_admin($_SESSION['username'])){
-
-                header("Location: index.php");
-            }
-
-
-         ?>
-
-
-
-
-
-
-
-    <div id="wrapper">
-
-
+ <div id="wrapper">
 
         <!-- Navigation -->
- 
-        <?php include "includes/admin_navigation.php" ?>
         
-        
-    
+        <?php include "includes/admin_navigation.php"?>
 
-<div id="page-wrapper">
+        <div id="page-wrapper">
 
-<div class="container-fluid">
+            <div class="container-fluid">
+             <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Welcome To Admin
+                            <small>Author</small>
+                        </h1>
 
-    <!-- Page Heading -->
-    <div class="row">
-        <div class="col-lg-12">
+                        <?php
+echo "befor if--";
+                        if(isset($_GET['source'])){
+                            echo "within if";
+                        $source = $_GET['source'];
+                         var_dump ("$source");
 
-  <h1 class="page-header">
-                Welcome to admin
-                <small>Author</small>
-            </h1>
-            
-            
-<?php
+                        }   else{
 
-if(isset($_GET['source'])){
+                          //  echo "within else";
 
-$source = $_GET['source'];
+                            $source =  '';
 
-} else {
+                          //  var_dump ($_GET);
+                        }
 
-$source = '';
+                         switch($source){
+                             case 'add_user';
+                             include "includes/add_user.php";
+                             break;
 
-}
+                             case 'edit_user';
+                             include "includes/edit_user.php";
+                              break;
 
-switch($source) {
-    
-    case 'add_user';
-    
-     include "includes/add_user.php";
-    
-    break; 
-    
-    
-    case 'edit_user';
-    
-    include "includes/edit_user.php";
-    break;
-    
-    case '200';
-    echo "NICE 200";
-    break;
-    
-    default:
-    
-    include "includes/view_all_users.php";
-    
-    break;
-    
-    
-    
-    
-}
-
-
-
-
-
-
-
-
-?>
-
- 
-            
-    
-            
-
+                             default:
+                             include "includes/view_all_users.php";
+                            break;
+                         }
+                         ?>                                        
+                    </div>    <!--form-->
+                </div>            
             </div>
+            <!-- /.container-fluid -->
+
         </div>
-        <!-- /.row -->
-
-    </div>
-    <!-- /.container-fluid -->
-
-</div>
-
-     
         <!-- /#page-wrapper -->
-        
-    <?php include "includes/admin_footer.php" ?>
+
+    <?php include "includes/admin_footer.php"?>
+ 

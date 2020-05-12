@@ -159,13 +159,8 @@
 
 
 ?> 
-
-
-                <!-- Posted Comments -->
-
-
-
-        <!-- Comments Form -->
+                <!-- Posted Comments -->              
+     <!-- Comments Form -->
         <div class="well">
 
 
@@ -209,6 +204,10 @@
             $comment_content= $row['comment_content'];
             $comment_author = $row['comment_author'];
                 
+
+
+
+            
                 ?>
                 
                 

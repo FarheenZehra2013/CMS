@@ -1,10 +1,11 @@
-                       <form name="temp" action="categories.php" method="post">
+                       <form name="temp" action="" method="POST">
+                        
                         <div class="form-group">
                          <label for="cat-title">Edit Category </label>
 
                          <?php
                          //edit query
-
+                         
                          if (isset($_GET['edit'])){
                           $cat_id=$_GET['edit'];
                           //edit is the key or parameter to pass in
@@ -25,10 +26,12 @@
 
                          <?php
                          //update category query
-                        if(isset($_GET['update_category'])){
+                         
+                        if(isset($_POST['update_category'])){
                           
-                         $the_cat_title = $_GET['update_category'];
+                         $the_cat_title = $_POST['cat_title'];
                          $query= "UPDATE catogories SET cat_title ='{$the_cat_title}' WHERE cat_id='{$cat_id}' ";
+                         echo $query;
                          $update_query= mysqli_query($connection,$query);
                          if(!$update_query){
 
@@ -40,6 +43,6 @@
                          </div>
                          
                         <div class="form-group">
-                         <input class="btn btn-primary" type="submit" name="update_category" value="Update Category">
+                         <input class="btn btn-primary" type="submit" name="update_category" value="Update_Category">
                         </div> 
                        </form>

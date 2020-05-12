@@ -5,7 +5,7 @@
 
     <!--database connection to admin-->
     <?php
-    if($connection) echo "connected;"     ?>
+    if($connection) echo "connected;" ?>
 
         <!-- Navigation -->
 
@@ -21,7 +21,12 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Welcome To Admin
-                            <small>Author</small>
+
+                              <small><?php var_dump ($_SESSION);
+                               echo $_SESSION['username']; ?></small>
+                              
+                           
+                            
                         </h1>
                         
                     </div>

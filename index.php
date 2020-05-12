@@ -29,7 +29,7 @@
             <?php
 
             //insert query to get data from database
-            $query= "SELECT * FROM posts";
+            $query= "SELECT * FROM posts WHERE post_status= 'published' ";
             $select_all_posts_query  = mysqli_query($connection,$query);
 
             while($row= mysqli_fetch_assoc($select_all_posts_query))
@@ -72,6 +72,8 @@
             
             
              </div>
+
+            
                 
            <!-- Blog Sidebar Widgets Column -->
 

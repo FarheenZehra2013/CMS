@@ -1,127 +1,90 @@
-
-
-<?php  // Get request user id and database data extraction
-
+<?php
 
 if(isset($_GET['edit_user'])){
 
-
-    $the_user_id =  escape($_GET['edit_user']);
-    
-
-    $query = "SELECT * FROM users WHERE user_id = $the_user_id ";
-    $select_users_query = mysqli_query($connection,$query);  
-
-      while($row = mysqli_fetch_assoc($select_users_query)) {
-
-          $user_id        = $row['user_id'];
-          $username       = $row['username'];
-          $user_password  = $row['user_password'];
-          $user_firstname = $row['user_firstname'];
-          $user_lastname  = $row['user_lastname'];
-          $user_email     = $row['user_email'];
-          $user_image     = $row['user_image'];
-          $user_role      = $row['user_role'];
-          
-      }
-      
-    
-    
-    
-?>
   
-
-   
- <?php  // Post request to update user 
-   
-
-   if(isset($_POST['edit_user'])) {
-       
-            
-            $user_firstname   = escape($_POST['user_firstname']);
-            $user_lastname    = escape($_POST['user_lastname']);
-            $user_role        = escape($_POST['user_role']);
-    
-           // $post_image = $_FILES['image']['name'];
-           // $post_image_temp = $_FILES['image']['tmp_name'];
-    
-    
-            $username      = escape($_POST['username']);
-            $user_email    = escape($_POST['user_email']);
-            $user_password = escape($_POST['user_password']);
-            $post_date     = escape(date('d-m-y'));
-
-       
-      
-
-        if(!empty($user_password)) { 
-
-          $query_password = "SELECT user_password FROM users WHERE user_id =  $the_user_id";
-          $get_user_query = mysqli_query($connection, $query_password);
-          confirmQuery($get_user_query);
-
-          $row = mysqli_fetch_array($get_user_query);
-
-          $db_user_password = $row['user_password'];
-
-
-        if($db_user_password != $user_password) {
-
-            $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
-
-          }
-
-
-          $query = "UPDATE users SET ";
-          $query .="user_firstname  = '{$user_firstname}', ";
-          $query .="user_lastname = '{$user_lastname}', ";
-          $query .="user_role   =  '{$user_role}', ";
-          $query .="username = '{$username}', ";
-          $query .="user_email = '{$user_email}', ";
-          $query .="user_password   = '{$hashed_password}' ";
-          $query .= "WHERE user_id = {$the_user_id} ";
-       
-       
-            $edit_user_query = mysqli_query($connection,$query);
-       
-            confirmQuery($edit_user_query);
-
-
-          echo "User Updated" . " <a href='users.php'>View Users?</a>";
-
-      
-
-             }  // if password empty check end
-
-    
+  $the_user_id= $_GET['edit_uer'];
 
 
 
-      
-        } // Post reques to update user end
+//select query to display edit data in post edit page
+
+$query = "SELECT * FROM users where user_id = {$the_user_id}";
+$select_users_query = mysqli_query($connection,$query); 
+
+while($row = mysqli_fetch_assoc($select_users_query))
+
+
+$user_id        = $row['user_id'];
+$username       = $row['username'];
+$user_password  = $row['user_password'];
+$user_firstname = $row['user_firstname'];
+$user_lastname  = $row['user_lastname'];
+$user_email     = $row['user_email'];
+$user_image     = $row['user_image'];
+$user_role      = $row['user_role'];
 
 
 
+}
+
+?>
+
+<?php
+if(isset($_POST['edit_user'])){
+
+  // echo $_POST['create_post'];
+
+ $user_firstname  = $_POST['user_firstname'];
+ $user_lastname= $_POST['user_lastname'];
+ $user_role     = $_POST['user_role'];
+ $username  = $_POST['username'];
+ //$userimage  = $_POST['user_image'];
+ $user_email    = $_POST['user_email'];
+ $user_password   = $_POST['user_password'];
+ 
+
+//insert query
+$query= "INSERT INTO users(user_firstname,user_lastname,user_role,username,user_email,user_password)";
+
+$query.= "VALUES ('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}',
+'{$user_email}','{$user_password}')";
 
 
- } else {  // If the user id is not present in the URL we redirect to the home page
+$create_user_query = mysqli_query($connection,$query);
 
+if(!$create_user_query){
 
-        header("Location: index.php");
+   die("query failed". mysqli_error($connection));
+}
 
-
-      }
-
-
-
-
-    
-    
+ }
 ?>
 
 
+<?php
 
-    <form action="" method="post" enctype="multipart/form-data">    
+
+  //update query
+  //we use catination to divide our query otherwise its a long long string
+
+  $query ="UPDATE posts SET ";
+  $query .="post_title ='{$post_title}',"; //where post_title is the column name in db and $post_title is the field in form 
+  $query .="post_author ='{$post_author}', ";//space after comma,
+  $query .="post_category_id ='{$post_category_id}', ";
+  $query .="post_status = '{$post_status}', "; 
+  $query .="post_date =now(), ";
+  $query .="post_image ='{$post_image}', ";//no coma
+  $query .="posts_tag ='{$posts_tag}', ";
+  $query .="post_content ='{$post_content}' ";
+  $query .="WHERE post_id ={$pid}" ;
+
+
+?>
+
+<!--lets create form-->
+
+<form action="" method="post" enctype="multipart/form-data">    
      
      
      
@@ -196,4 +159,3 @@ if(isset($_GET['edit_user'])){
 
 
 </form>
-    

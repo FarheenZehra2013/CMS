@@ -18,15 +18,39 @@
 
                         <?php
 
-//if(isset($_GET['delete'])){
+//lets make query for approved comments
+if(isset($_GET['approve'])){
    // echo "hello";
 
+$the_comment_id  =$_GET['approve'];//unapproved is a key
+//use update query
 
-//$the_post_id  = $_GET['delete'];
+$query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id =$the_comment_id ";
+$approve_comment_query = mysqli_query($connection,$query);
+header("Location: comments.php");
+}//send that page directly on comments.php
 
-//$query = "DELETE FROM posts where post_id =$the_post_id";
-//$delete_query = mysqli_query($connection,$query);
-//}
+//lets make query for unapproved comments
+if(isset($_GET['unapprove'])){
+   // echo "hello";
+
+$the_comment_id  =$_GET['unapprove'];//unapproved is a key
+//use update query
+
+$query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id =$the_comment_id  ";
+$unapprove_comment_query = mysqli_query($connection,$query);
+header("Location: comments.php");//send that page directly on comments.php
+}
+
+//lets make delete button query in comments.php page
+if(isset($_GET['delete'])){
+     // echo "hello";
+$the_comment_id  =$_GET['delete'];
+
+$query = "DELETE FROM comments where comment_id = {$the_comment_id}";
+$delete_query = mysqli_query($connection,$query);
+header("Location: comments.php");//send that page directly on comments.php
+}
                         //create query for display comments in admin part
 
                      $query = "SELECT * FROM  comments order by comment_id";
@@ -73,19 +97,17 @@
                         
                         echo    "<td>$comment_date</td>";
                         //add edit link: in edit link we pass two parameters
-                        echo     "<td><a href='comments.php?source=edit_comments&p_id='>Approve</a></td>";
+                        echo     "<td><a href='comments.php?approve=$comment_id'>Approve</a></td>";
                         //add delete link
-                        echo     "<td><a href='comments.php?delete='>Unapprove</a></td>";
+                        echo     "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
                         
-                        echo     "<td><a href='comments.php?delete='>Delete</a></td>";
+                        echo     "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
                         echo    "</tr>";
 
                      }
                      ?>
                         </tbody>
                     </table> 
-                    <?php
-                    //lets make query for delete button for posts.php
+                   
 
                     
-?>
